@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaokhun Boat Noodle Restaurant</title>
+    <!-- นำเข้าฟอนต์ Kanit และ Poppins จาก Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #8B0000;
+            --accent-color: #FF5722;
+            --gold-color: #FFC107;
+            --bg-light: #FAFAFA;
+            --text-dark: #2B2B2B;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', 'Kanit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* --- Header / Navigation Bar (ตามแบบในภาพ) --- */
+        header {
+            background-color: #cccccc; /* สีเทาสว่าง */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 8%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .brand-logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .brand-logo span {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #222;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.05rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- Hero Section (ตามแบบในภาพ) --- */
+        .hero-container {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            /* ใส่ไฟล์ภาพพื้นหลังโต๊ะอาหารที่นี่ */
+            background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), 
+                        url('bg.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            overflow: hidden;
+        }
+
+        .hero-text {
+            max-width: 50%;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            color: #ffffff;
+            font-weight: 700;
+            text-shadow: 
+                -2px -2px 0 #000,  
+                 2px -2px 0 #000,
+                -2px  2px 0 #000,
+                 2px  2px 0 #000,
+                 3px  3px 8px rgba(0, 0, 0, 0.8);
+            line-height: 1.2;
+        }
+
+        .logo-box-wrapper {
+            position: relative;
+            z-index: 2;
+            margin-right: 5%;
+        }
+
+        .white-frame {
+            border: 4px solid #ffffff;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .center-logo {
+            width: 190px;
+            height: 190px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .center-logo img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+        }
+
+        /* --- Highlights Section --- */
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .highlight-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .highlight-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* --- Menu Section --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .menu-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-content {
+            padding: 20px;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+
+        .menu-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .menu-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .menu-desc {
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        /* --- Map & Contact Footer --- */
+        footer {
+            background-color: #1A1A1A;
+            color: white;
+            padding: 50px 20px 20px 20px;
+            text-align: center;
+        }
+
+        .footer-info {
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+        }
+
+        .footer-info h2 {
+            color: var(--gold-color);
+            margin-bottom: 15px;
+        }
+
+        .footer-info p {
+            margin-bottom: 8px;
+            color: #ccc;
+            font-weight: 300;
+        }
+
+        .map-box {
+            margin: 20px auto;
+            max-width: 600px;
+            height: 250px;
+            background-color: #333;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .copyright {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .hero-container {
+                flex-direction: column;
+                justify-content: center;
+                height: auto;
+                padding: 40px 20px;
+                text-align: center;
+                gap: 25px;
+            }
+            .hero-text {
+                max-width: 100%;
+            }
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            .logo-box-wrapper {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation (มุมขวามี Main, Contact us, Menu, Map) -->
+    <header>
+        <div class="brand-logo">
+            <img src="โลโก้จ้าวคุณ.jpg" alt="Jaokhun Logo">
+            <span>Jaokhun</span>
+        </div>
+        <nav>
+            <a href="#main">Main</a>
+            <a href="#contact">Contact us</a>
+            <a href="#menu">Menu</a>
+            <a href="#map">Map</a>
+        </nav>
+    </header>
+
+    <!-- Hero Banner Section (ID: main) -->
+    <section class="hero-container" id="main">
+        <div class="hero-text">
+            <h1>Jaokhun Boat Noodle<br>Restaurant.</h1>
+        </div>
+
+        <div class="logo-box-wrapper">
+            <div class="white-frame">
+                <div class="center-logo">
+                    <img src="โลโก้จ้าวคุณ.jpg" alt="ก๋วยเตี๋ยวเรือจ้าวคุณ">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section class="highlights" id="review">
+        <div class="highlight-card">
+            <h3>🍲 น้ำซุปสูตรเข้มข้น</h3>
+            <p>เคี่ยวสมุนไพรและเครื่องเทศไทยกว่า 10 ชนิด รสชาติเข้มข้น หอมกลมกล่อมทุกคำ</p>
+        </div>
+        <div class="highlight-card">
+            <h3>🥩 เนื้อนุ่ม คัดเกรด</h3>
+            <p>ใช้หมูคุโรบูตะและเนื้อโคขุนสไลซ์ หมักนุ่มกำลังดี สดใหม่วันต่อวัน</p>
+        </div>
+        <div class="highlight-card">
+            <h3>🥓 เมนูข้าว</h3>
+            <p>เมนูข้าวสไตล์ไทย ผสมผสามหลายสไตล์เข้าด้วยกัน ชวนลิ้มลอง</p>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <div class="container" id="menu">
+        <h2 class="section-title">เมนูโปรโมทยอดฮิต (MENU)</h2>
+        <p class="section-subtitle">คัดสรรเมนูเด็ดที่มาแล้วต้องสั่ง</p>
+
+        <div class="menu-grid">
+            
+            <div class="menu-card">
+                <img src="เมนูก๋วยเตี๋ยวเรือ.jpg" alt="ก๋วยเตี๋ยวเรือจ้าวคุณ" class="menu-img">
+                <div class="menu-content">
+                    <div class="menu-header">
+                        <span class="menu-title">ก๋วยเตี๋ยวเรือจ้าวคุณ</span>
+                        <span class="menu-price">เริ่มต้นที่ 69.-</span>
+                    </div>
+                    <p class="menu-desc">หมูสไลซ์นุ่มๆ พร้อมตับสดและลูกชิ้นหมูแท้ ในน้ำซุปเข้มข้นรสเด็ด</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="เมนูหม้อไฟ.jpg" alt="ก๋วยเตี๋ยวหม้อไฟ" class="menu-img">
+                <div class="menu-content">
+                    <div class="menu-header">
+                        <span class="menu-title">ก๋วยเตี๋ยวเรือหม้อไฟ</span>
+                        <span class="menu-price">เริ่มต้นที่ 199.-</span>
+                    </div>
+                    <p class="menu-desc">เนื้อโคขุนริบอายสไลซ์บาง นุ่มละมุน พร้อมเนื้อตุ๋นเปื่อยหอมกลิ่นเครื่องยาจีน</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="เมนูข้าว.jpg" alt="เมนูข้าว" class="menu-img">
+                <div class="menu-content">
+                    <div class="menu-header">
+                        <span class="menu-title">เมนูข้าว</span>
+                        <span class="menu-price">เริ่มต้นที่ 79.-</span>
+                    </div>
+                    <p class="menu-desc">เมนูข้าวสไตล์ไทย รสชาติจัดจ้าน หลากหลายเมนู</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="เมนูเครื่องดื่ม.PNG" alt="เมนูเครื่องดื่ม" class="menu-img">
+                <div class="menu-content">
+                    <div class="menu-header">
+                        <span class="menu-title">เมนูเครื่องดื่ม</span>
+                        <span class="menu-price">เริ่มต้นที่ 12.-</span>
+                    </div>
+                    <p class="menu-desc">เครื่องดื่มหลากหลาย สไตล์ไทย </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Contact us & Map Section -->
+    <footer id="contact">
+        <div class="footer-info">
+            <h2>ร้านก๋วยเตี๋ยวเรือจ้าวคุณ (Contact us)</h2>
+            <p>📍 พิกัดร้าน: (190/1 ถนน สายลวด ปากซอย 8, 10270)</p>
+            <p>⏰ เวลาเปิด-ปิด: เปิดบริการทุกวัน 09:00 - 18:00 น.</p>
+            <p>📞 โทรศัพท์: 094 449 2246</p>
+            <p>📱 Facebook: <a href="https://www.facebook.com/JaoKhunNoodle" target="_blank" style="color: var(--gold-color);">JaoKhunNoodle</a></p>
+            
+            <!-- Map Area -->
+            <div id="map" style="margin-top: 30px;">
+                <h3 style="color: white; margin-bottom: 10px;">แผนที่ร้าน (Map)</h3>
+                <div class="map-box">
+                    <!-- สามารถนำ iframe แผนที่จาก Google Maps มาวางตรงนี้ได้ -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.6!2d100.5!3d13.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDQyJzAwLjAiTiAxMDDCsDMwJzAwLjAiRQ!5e0!3m2!1sth!2sth!4v1" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 JaoKhunNoodle. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
